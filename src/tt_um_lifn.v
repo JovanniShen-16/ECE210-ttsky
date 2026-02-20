@@ -28,18 +28,18 @@ module tt_um_lifn (
   wire [3:0] layer_spikes; //same for the first layer, except this time there are 4 neurons, each with a different weight
 
   //input layer
-  lif01 (.current(ui_in[7:4]), .clk(clk), .rst_n(rst_n), .state(), .spike(input_spikes[3]));
-  lif02 (.current(ui_in[3:0]), .clk(clk), .rst_n(rst_n), .state(), .spike(input_spikes[2]));
+  lif lif01 (.current(ui_in[7:4]), .clk(clk), .rst_n(rst_n), .state(), .spike(input_spikes[3]));
+  lif lif02 (.current(ui_in[3:0]), .clk(clk), .rst_n(rst_n), .state(), .spike(input_spikes[2]));
 
   //first layer
-  lif11 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[3]));
-  lif12 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[2]));
-  lif13 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[1]));
-  lif14 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[0]));
+  lif lif11 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[3]));
+  lif lif12 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[2]));
+  lif lif13 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[1]));
+  lif lif14 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[0]));
 
   //output layer
-  lif31 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(uo_out[7]));
-  lif32 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(uo_out[6]));
+  lif lif21 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(uo_out[7]));
+  lif lif22 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(uo_out[6]));
 
 
 endmodule
