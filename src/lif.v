@@ -6,23 +6,23 @@ module lif (
     input wire rst_n,
     output reg [3:0] state,
     output wire spike
-)
+);
 
-    wire [7:0] next_state;
-    reg [7:0] threshold;
-    reg [7:0] beta;
+    wire [3:0] next_state;
+    reg [3:0] threshold;
+    reg [3:0] beta;
 
     always @(posedge clk) begin
         if (!rst_n) begin
             state <= 0;
-            threshold <= 128; // Example threshold
-            beta <= d'10; // Example decay factor
+            threshold <= 4'd8; // Example threshold
+            beta <= 4'd2;
         end else begin
             state <= next_state;
         end
     end
 
-    assign next_state = current + beta * state;
+    assign next_state = value + beta * state;
 
     assign spike = (state >= threshold);
 
