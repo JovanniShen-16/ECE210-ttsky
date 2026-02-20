@@ -18,6 +18,8 @@ module tt_um_lifn (
 
   // All output pins must be assigned. If not used, assign to 0.
   assign uio_oe  = 0;
+  assign uio_out = 8'b0;
+  assign uo_out[5:0] = 6'b0;
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, uio_in, 1'b0};
@@ -28,6 +30,7 @@ module tt_um_lifn (
   wire [7:0] input_states;
   wire [15:0] layer_states;
   wire [7:0] output_states;
+  assign input_spikes[1:0] = 2'b0;
 
   //input layer
   lif lif01 (.current(ui_in[7:4]), .clk(clk), .rst_n(rst_n), .state(input_states[3:0]), .spike(input_spikes[3]));
