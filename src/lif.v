@@ -1,12 +1,12 @@
 `default_nettype none
 
-module lif {
+module lif (
     input wire[3:0] value,
     input wire clk,
     input wire rst_n,
     output reg [3:0] state,
     output wire spike
-}
+)
 
     wire [7:0] next_state;
     reg [7:0] threshold;
