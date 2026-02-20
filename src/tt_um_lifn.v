@@ -26,20 +26,23 @@ module tt_um_lifn (
   //instantiate neurons
   wire [3:0] input_spikes; //each spike from the input layer is a bit in the 4 bit number, making them have an inherent weight
   wire [3:0] layer_spikes; //same for the first layer, except this time there are 4 neurons, each with a different weight
+  wire [7:0] input_states;
+  wire [15:0] layer_states;
+  wire [7:0] output_states;
 
   //input layer
-  lif lif01 (.current(ui_in[7:4]), .clk(clk), .rst_n(rst_n), .state(), .spike(input_spikes[3]));
-  lif lif02 (.current(ui_in[3:0]), .clk(clk), .rst_n(rst_n), .state(), .spike(input_spikes[2]));
+  lif lif01 (.current(ui_in[7:4]), .clk(clk), .rst_n(rst_n), .state(input_states[3:0]), .spike(input_spikes[3]));
+  lif lif02 (.current(ui_in[3:0]), .clk(clk), .rst_n(rst_n), .state(input_states[7:4]), .spike(input_spikes[2]));
 
   //first layer
-  lif lif11 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[3]));
-  lif lif12 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[2]));
-  lif lif13 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[1]));
-  lif lif14 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(layer_spikes[0]));
+  lif lif11 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(layer_states[3:0]), .spike(layer_spikes[3]));
+  lif lif12 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(layer_states[7:4]), .spike(layer_spikes[2]));
+  lif lif13 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(layer_states[11:8]), .spike(layer_spikes[1]));
+  lif lif14 (.current(input_spikes), .clk(clk), .rst_n(rst_n), .state(layer_states[15:12]), .spike(layer_spikes[0]));
 
   //output layer
-  lif lif21 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(uo_out[7]));
-  lif lif22 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(), .spike(uo_out[6]));
+  lif lif21 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(output_states[3:0]), .spike(uo_out[7]));
+  lif lif22 (.current(layer_spikes), .clk(clk), .rst_n(rst_n), .state(output_states[7:4]), .spike(uo_out[6]));
 
 
 endmodule
