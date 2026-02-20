@@ -22,7 +22,8 @@ module lif (
         end
     end
 
-    assign next_state = current + beta * state;
+    wire [7:0] full_calc = current + (beta * state);
+    assign next_state = full_calc[3:0];
 
     assign spike = (state >= threshold);
 
