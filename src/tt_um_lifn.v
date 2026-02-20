@@ -20,7 +20,7 @@ module tt_um_lifn (
   assign uio_oe  = 0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, uio_in 1'b0};
+  wire _unused = &{ena, uio_in, 1'b0};
 
   //instantiate neurons
   wire [3:0] input_spikes; //each spike from the input layer is a bit in the 4 bit number, making them have an inherent weight
