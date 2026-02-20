@@ -1,10 +1,10 @@
 `default_nettype none
 
-module vxm {
-    input wire[7:0] value,
+module lif {
+    input wire[3:0] value,
     input wire clk,
     input wire rst_n,
-    output reg [7:0] state,
+    output reg [3:0] state,
     output wire spike
 }
 
@@ -23,5 +23,7 @@ module vxm {
     end
 
     assign next_state = current + beta * state;
+
+    assign spike = (state >= threshold);
 
 endmodule
