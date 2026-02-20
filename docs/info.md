@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+Takes input voltages into two input neurons, these two neurons will generate spikes to go into another layer comprised of 4 neurons. The intermediary layer then sends its spikes to a final output layer of 2 neurons which will be observed.
 
 ## How to test
 
